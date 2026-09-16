@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aku & Friends | Confesionario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Aku & Friends</h1>
+        <p class="subtitle">La Purga: Todo sale a la luz</p>
+
+        <div class="rules-container">
+            <h3>Reglas de Confesión:</h3>
+            <ol>
+                <li>Chisme sí, mensajes sin sentido no</li>
+                <li>Puedes decir nombres</li>
+                <li>Indirectas permitidas</li>
+                <li>Chisme ≠ insultar</li>
+                <li>Nada de spam o troleos vacíos</li>
+            </ol>
+            <p class="warning">⚠️ Si se rompen las reglas, no sale en stream.</p>
+        </div>
+
+        <form id="formConfesion">
+            <textarea id="mensaje" placeholder="Escribe tu confesión de forma anónima..." required></textarea>
+            <button type="submit" id="btn">Enviar Confesión</button>
+            <div id="mensajeExito" style="display: none;">¡Tu secreto está a salvo en la oscuridad!</div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
