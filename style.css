@@ -54,11 +54,40 @@ h1 {
     text-align: center;
     color: #a8a8a8;
     font-size: 1.1rem;
-    margin-bottom: 25px;
+    margin-bottom: 0;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-family: 'Special Elite', monospace;
     animation: flicker 4s infinite 1s;
+}
+
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.header-titles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-img {
+    max-height: 80px;
+    width: auto;
+    object-fit: contain;
+    animation: float-character 4s ease-in-out infinite;
+}
+
+.header-img:first-child {
+    animation-delay: 0s;
+}
+
+.header-img:last-child {
+    animation-delay: -2s;
 }
 
 .rules-container {
@@ -96,38 +125,56 @@ h1 {
 .rules-container .warning {
     color: #ff1a26;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 1.3rem;
     text-align: center;
     border-top: 1px dashed #5a0000;
-    padding-top: 10px;
+    padding-top: 15px;
+    margin-top: 15px;
     text-transform: uppercase;
+    letter-spacing: 2px;
     animation: heartbeat 2s infinite;
 }
 
 textarea {
     width: 100%;
     min-height: 120px;
-    background: rgba(0, 0, 0, 0.7);
-    border: 1px solid #8b0000;
-    color: #fff;
+    background-color: rgba(5, 0, 0, 0.85);
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 0, 0, 0.05) 2px, rgba(139, 0, 0, 0.05) 4px);
+    border: 1px solid #5a0000;
+    color: #dcdcdc;
     padding: 15px;
     border-radius: 4px;
     resize: none;
     overflow: hidden;
     font-family: 'Special Elite', monospace;
-    font-size: 1rem;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
-    transition: all 0.3s;
+    font-size: 1.1rem;
+    box-shadow: inset 0 0 15px rgba(0,0,0,1);
+    transition: all 0.3s ease;
+    animation: idle-textarea 4s infinite;
 }
 
 textarea:focus {
     outline: none;
+    background-color: rgba(10, 0, 0, 0.95);
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 26, 38, 0.1) 2px, rgba(255, 26, 38, 0.1) 4px);
     border-color: #ff1a26;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 0 10px rgba(229, 9, 20, 0.4);
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 26, 38, 0.8);
+    animation: focused-textarea 2s infinite;
+}
+
+textarea:disabled {
+    background-color: rgba(20, 0, 0, 0.9);
+    color: #8b0000;
+    border-color: #8b0000;
+    animation: none;
+    text-shadow: none;
 }
 
 textarea::placeholder {
-    color: #777;
+    color: #666;
+    text-shadow: none;
+    animation: pulse-placeholder 3s infinite;
 }
 
 button {
@@ -282,4 +329,69 @@ button:active {
 @keyframes button-breathe {
     0%, 100% { box-shadow: 0 0 10px rgba(139, 0, 0, 0.5); border-color: #8b0000; text-shadow: none; color: #e50914; }
     50% { box-shadow: 0 0 25px rgba(255, 26, 38, 0.4); border-color: #ff1a26; text-shadow: 0 0 5px rgba(255, 26, 38, 0.5); color: #ff1a26; }
+}
+
+@keyframes float-character {
+    0%, 100% { transform: translateY(0); filter: drop-shadow(0 0 5px rgba(229, 9, 20, 0.4)); }
+    50% { transform: translateY(-10px); filter: drop-shadow(0 0 15px rgba(229, 9, 20, 0.9)); }
+}
+
+@keyframes pulse-placeholder {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes idle-textarea {
+    0%, 100% { border-color: #5a0000; box-shadow: inset 0 0 15px rgba(0,0,0,1); }
+    50% { border-color: #8b0000; box-shadow: inset 0 0 20px rgba(139, 0, 0, 0.3); }
+}
+
+@keyframes focused-textarea {
+    0%, 100% { box-shadow: inset 0 0 20px rgba(255, 26, 38, 0.2), 0 0 10px rgba(255, 26, 38, 0.3); border-color: #e50914; }
+    50% { box-shadow: inset 0 0 35px rgba(255, 26, 38, 0.4), 0 0 20px rgba(255, 26, 38, 0.6); border-color: #ff1a26; }
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 600px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    .container {
+        padding: 20px 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .header-img {
+        max-height: 55px;
+    }
+    
+    .header-container {
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .rules-container .warning {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+
+    button {
+        font-size: 1.2rem;
+        padding: 15px 20px;
+        letter-spacing: 3px;
+        width: 100%;
+    }
+
+    button:hover, button:active, button:disabled {
+        letter-spacing: 5px;
+    }
 }

@@ -11,8 +11,14 @@
 <body>
 
     <div class="container">
-        <h1>Aku & Friends</h1>
-        <p class="subtitle">La Purga: Todo sale a la luz</p>
+        <div class="header-container">
+            <img src="akumafondo.png" alt="Akuma" class="header-img">
+            <div class="header-titles">
+                <h1>Aku & Friends</h1>
+                <p class="subtitle">La Purga: Todo sale a la luz</p>
+            </div>
+            <img src="nicolefondo.png" alt="Nicole" class="header-img">
+        </div>
 
         <div class="rules-container">
             <h3>Reglas de Confesión:</h3>
@@ -27,7 +33,7 @@
         </div>
 
         <form id="formConfesion">
-            <textarea id="mensaje" placeholder="Escribe tu confesión de forma anónima..." required></textarea>
+            <textarea id="mensaje" placeholder="Confiésate de manera anónima..." required></textarea>
             <button type="submit" id="btn">Enviar Confesión</button>
             <div id="mensajeExito" style="display: none;">¡Tu secreto está a salvo en la oscuridad!</div>
         </form>
