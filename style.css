@@ -27,6 +27,8 @@ body {
     box-shadow: 0 0 30px rgba(139, 0, 0, 0.4), inset 0 0 20px rgba(0,0,0,0.8);
     position: relative;
     backdrop-filter: blur(3px);
+    opacity: 0;
+    animation: fade-in-up 1s ease-out forwards 2.5s;
 }
 
 .container::before {
@@ -349,6 +351,122 @@ button:active {
 @keyframes focused-textarea {
     0%, 100% { box-shadow: inset 0 0 20px rgba(255, 26, 38, 0.2), 0 0 10px rgba(255, 26, 38, 0.3); border-color: #e50914; }
     50% { box-shadow: inset 0 0 35px rgba(255, 26, 38, 0.4), 0 0 20px rgba(255, 26, 38, 0.6); border-color: #ff1a26; }
+}
+
+/* Intro Animations */
+#intro-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: all;
+    animation: fade-out-overlay 0.5s ease forwards 3.5s;
+}
+
+.door {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #050203;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.left-door {
+    left: 0;
+    justify-content: flex-end;
+    animation: open-left 1.5s cubic-bezier(0.7, 0, 0.3, 1) forwards 2s;
+}
+
+.right-door {
+    right: 0;
+    justify-content: flex-start;
+    animation: open-right 1.5s cubic-bezier(0.7, 0, 0.3, 1) forwards 2s;
+}
+
+.logo-half {
+    position: absolute;
+    width: 600px;
+    max-width: 90vw;
+    top: 50%;
+}
+
+.left-door .logo-half {
+    left: 100%;
+    transform: translate(-50%, -50%);
+    animation: pulse-intro-logo 2s infinite;
+}
+
+.right-door .logo-half {
+    left: 0;
+    transform: translate(-50%, -50%);
+    animation: pulse-intro-logo 2s infinite;
+}
+
+.skeleton-hand {
+    width: 55vw; /* 55% of the screen width to overlap the center slightly */
+    opacity: 0;
+    mix-blend-mode: lighten;
+    position: absolute;
+    z-index: 20;
+    top: 50%;
+    pointer-events: none;
+}
+
+.left-hand {
+    left: 0;
+    transform: translate(-100%, -50%); /* Start hidden on the left */
+    animation: 
+        show-left-hand 0.8s ease forwards 1s,
+        open-left-hand 1.5s cubic-bezier(0.7, 0, 0.3, 1) forwards 2s;
+}
+
+.right-hand {
+    right: 0;
+    transform: translate(100%, -50%) scaleX(-1); /* Start hidden on the right */
+    animation: 
+        show-right-hand 0.8s ease forwards 1s,
+        open-right-hand 1.5s cubic-bezier(0.7, 0, 0.3, 1) forwards 2s;
+}
+
+@keyframes open-left {
+    to { transform: translateX(-100%); }
+}
+
+@keyframes open-right {
+    to { transform: translateX(100%); }
+}
+
+@keyframes pulse-intro-logo {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes fade-out-overlay {
+    to { opacity: 0; visibility: hidden; }
+}
+
+@keyframes show-left-hand {
+    /* TranslateX 0 means the left edge of the image touches the left edge of screen */
+    to { opacity: 1; transform: translate(0, -50%); }
+}
+
+@keyframes show-right-hand {
+    to { opacity: 1; transform: translate(0, -50%) scaleX(-1); }
+}
+
+@keyframes open-left-hand {
+    /* Slide back completely offscreen */
+    to { transform: translate(-100%, -50%); }
+}
+
+@keyframes open-right-hand {
+    to { transform: translate(100%, -50%) scaleX(-1); }
 }
 
 /* Responsive Design for Mobile */

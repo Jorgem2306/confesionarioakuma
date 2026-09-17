@@ -38,3 +38,13 @@ document.getElementById("formConfesion").addEventListener("submit", async (e) =>
         btn.textContent = "Enviar Confesión";
     }
 });
+
+// Remover overlay de introducción después de la animación
+document.addEventListener("DOMContentLoaded", () => {
+    const overlay = document.getElementById("intro-overlay");
+    if (overlay) {
+        setTimeout(() => {
+            overlay.remove();
+        }, 4000); // Se elimina tras 4 segundos (cuando termina la animación)
+    }
+});
